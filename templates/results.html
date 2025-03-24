@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Match Results</title>
+</head>
+<style>
+#container{
+  max-width:850px;
+  margin:0 auto;}
+</style>
+<div id="container" >
+<body>
+    <h1>Match Results</h1>
+    <ul>
+        {% for series in matches.teamMatchesData %}
+            {% if series.matchDetailsMap %}
+                <li>
+                    <h2>{{ series.matchDetailsMap.key }}</h2>
+                    <ul>
+                        {% for match in series.matchDetailsMap.match %}
+                            <li>
+                                {{ match.matchInfo.matchDesc }} - {{ match.matchInfo.team1.teamName }} vs {{ match.matchInfo.team2.teamName }}
+                                <br> Start Date: {{ match.matchInfo.startDate | dateformat }}
+                                <br> Status: {{ match.matchInfo.status }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <a href="/">Search Again</a>
+</body>
+</div>
+</html>
+
